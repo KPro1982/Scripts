@@ -1,0 +1,38 @@
+modded class MissionGameplay
+{   
+// This runs on the client
+
+		override void OnMissionStart()
+	{
+		super.OnMissionStart();
+		OWG_GetKlient();
+		GetRPCManager().AddRPC( "OWG_OWGExclusive", "RPCOWG_Konfig", this, SingeplayerExecutionType.Both );
+		Print("#########[OWG_OWGExclusive][Client] Requesting Config From Server");
+		GetRPCManager().SendRPC("OWG_OWGExclusive", "RPCOWG_Konfig", new Param1< OWG_Konfig >( NULL ), true, NULL);
+	}
+	
+	
+	void RPCOWG_Konfig( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
+		Param1< OWG_Konfig > data;
+		if ( !ctx.Read( data ) ) return;
+		Print("########[OWG_OWGExclusive][Client] Received Config From Server");
+		m_OWG_Konfig = data.param1;
+	}
+	
+	/*
+	override void OnUpdate(float timeslice)
+	{        		
+		super.OnUpdate(timeslice); 		
+		if ( GetGame().GetInput().LocalPress("UAOWGExclusive") && GetGame().GetUIManager().GetMenu() == NULL ) 
+		{				
+			Print(string.Format("Key pressed!"));
+							
+								
+		}
+			
+	}
+	*/
+	
+	
+	
+}

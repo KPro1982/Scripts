@@ -1,0 +1,194 @@
+PanelWidgetClass rootFrame {
+ size 0.5 0.25
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ style rover_sim_blackbox
+ {
+  PanelWidgetClass titlebar_panel {
+   ignorepointer 1
+   size 1 0.2
+   halign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    PanelWidgetClass panel_close {
+     ignorepointer 1
+     size 0.07 1
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      ButtonWidgetClass close_button {
+       visible 1
+       size 0.8 0.8
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style DayZDefaultButtonAll
+       {
+        ImageWidgetClass ImageWidget0 {
+         ignorepointer 1
+         size 0.7 0.7
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         imageTexture "{0824EF46ED4B1CCD}gui/textures/dz_inv_x_ca.edds"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         stretch 1
+        }
+       }
+      }
+     }
+    }
+    TextWidgetClass title_textbox {
+     ignorepointer 1
+     position 0.05 0
+     size 0.8 0.75
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Rational Vehicles Configuration"
+    }
+   }
+  }
+  PanelWidgetClass buttons_panel {
+   ignorepointer 1
+   position 0 0.8
+   size 1 0.2
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ButtonWidgetClass ok_button {
+     position 0.2 0
+     size 0.25 0.69
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Editor
+     text "OK"
+    }
+    ButtonWidgetClass cancel_button {
+     position 0.2 0
+     size 0.25 0.75
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Editor
+     text "CANCEL"
+    }
+   }
+  }
+  PanelWidgetClass modcontrol_panel {
+   ignorepointer 1
+   position 0 0
+   size 0.95 0.6
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    PanelWidgetClass config_panel0 {
+     ignorepointer 1
+     size 1 0.5
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      EditBoxWidgetClass damage_editbox {
+       position 0 0
+       size 0.25 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Editor
+       "Use default text" 0
+       font "gui/fonts/Metron16"
+      }
+      TextWidgetClass configname_text0 {
+       ignorepointer 1
+       position 0.3 0
+       size 0.5 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Damage %"
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass config_panel1 {
+     ignorepointer 1
+     position 0 0.5
+     size 1 0.5
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      EditBoxWidgetClass minimumdamage_editbox {
+       position 0 0
+       size 0.25 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Editor
+       "Use default text" 0
+       font "gui/fonts/Metron16"
+      }
+      TextWidgetClass configname_text1 {
+       ignorepointer 1
+       position 0.3 0
+       size 0.5 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Minimum Damage %"
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+ }
+}

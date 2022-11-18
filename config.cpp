@@ -1,0 +1,97 @@
+class CfgPatches
+{
+	class Kpro_Scripts
+	{
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = 0.1;
+		requiredAddons[] = {"VanillaPPMap", "SchanaModCompass",  "Kpro_RationalCompass", "Kpro_RationalGPS", "Kpro_RationalVehicles", "RB5" }; 
+	};
+};
+
+class CfgMods 
+{
+	class Kpro_OWGExclusive
+	{
+		name = "Kpro1982";
+		dir = "OWGExclusive";
+		credits = "Kpro1982";
+		author = "Kpro1982";
+		overview = "A new mod";
+		creditsJson = "OWGExclusive/Scripts/Data/Credits.json";
+		versionPath = "OWGExclusive/Scripts/Data/Version.hpp";
+		type = "mod";
+		
+		 inputs="OWGExclusive\scripts\data\inputs.xml";
+		
+		dependencies[] =
+		{
+			"Game", "World", "Mission"
+		};
+
+		
+		class defs
+		{
+			class imageSets
+			{
+				/* files[]=
+				{
+					"OWGExclusive/gui/imagesets/prefabs.imageset"
+				}; */
+			};
+
+			class widgetStyles
+			{
+				/*
+				files[]=
+				{
+					"OWGExclusive/gui/looknfeel/prefabs.styles"
+				};
+				*/
+			};
+
+			class engineScriptModule
+			{
+				value = "";
+				files[] =
+				{
+					"scripts/1_core"
+					"OWGExclusive/scripts/common",
+					"OWGExclusive/scripts/1_core"
+				};
+			};
+
+			class gameScriptModule
+			{
+				value="";
+				files[] = 
+				{
+					"scripts/3_Game"
+					"OWGExclusive/scripts/common",
+					"OWGExclusive/scripts/3_Game"
+				};
+			};
+			class worldScriptModule
+			{
+				value="";
+				files[] = 
+				{
+					"scripts/4_World"
+					"OWGExclusive/scripts/common",
+					"OWGExclusive/scripts/4_World"
+				};
+			};
+
+			class missionScriptModule 
+			{
+				value="";
+				files[] = 
+				{
+					"scripts/5_Mission"
+					"OWGExclusive/scripts/common",
+					"OWGExclusive/scripts/5_Mission"
+				};
+			};
+		};
+	};
+};

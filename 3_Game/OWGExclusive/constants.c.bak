@@ -1,0 +1,3 @@
+static const int UI_ADMIN_CONTROL  = 3214001;
+static const int UI_RB_CONFIG  = 3214002;
+static const int UI_RV_CONFIG  = 3214003;

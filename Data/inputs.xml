@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modded_inputs>
+	<inputs>
+		<actions>
+			<input name="OWGAdmin" loc="Admin Screen"/>
+		</actions>
+		<sorting name="OWGAdmin" loc="OWG">
+			<input name="OWGAdmin"/>
+		</sorting>	
+	</inputs>
+	<preset>
+		<input name="OWGAdmin">
+			<btn name="kO"/>
+		</input>
+	</preset>
+</modded_inputs>

@@ -1,0 +1,327 @@
+PanelWidgetClass rootFrame {
+ size 0.5 0.65
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ style rover_sim_blackbox
+ {
+  PanelWidgetClass titlebar_panel {
+   ignorepointer 1
+   size 1 0.1
+   halign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    PanelWidgetClass panel_close {
+     ignorepointer 1
+     size 0.07 1
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      ButtonWidgetClass close_button {
+       visible 1
+       size 0.8 0.8
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style DayZDefaultButtonAll
+       {
+        ImageWidgetClass ImageWidget0 {
+         ignorepointer 1
+         size 0.7 0.7
+         halign center_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         imageTexture "{0824EF46ED4B1CCD}gui/textures/dz_inv_x_ca.edds"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         stretch 1
+        }
+       }
+      }
+     }
+    }
+    TextWidgetClass title_textbox {
+     ignorepointer 1
+     position 0.05 0
+     size 0.8 0.75
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "OWG Admin Control"
+    }
+   }
+  }
+  PanelWidgetClass buttons_panel {
+   ignorepointer 1
+   position 0 0.9
+   size 1 0.1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    ButtonWidgetClass ok_button {
+     size 0.25 0.75
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Editor
+     text "OK"
+    }
+   }
+  }
+  PanelWidgetClass modcontrol_panel {
+   ignorepointer 1
+   size 0.95 0.8
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    PanelWidgetClass mod_panel0 {
+     ignorepointer 1
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass rationalbases_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text0 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Rational Bases"
+       "text valign" center
+      }
+      ButtonWidgetClass rationalbasesconfig_button {
+       position 0.8 0
+       size 0.2 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Configs"
+      }
+     }
+    }
+    PanelWidgetClass mod_panel1 {
+     ignorepointer 1
+     position 0 0.15
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass vehicles_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text1 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Rational Vehicles"
+       "text valign" center
+      }
+      ButtonWidgetClass vehiclesconfig_button {
+       position 0.8 0
+       size 0.2 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Configs"
+      }
+     }
+    }
+    PanelWidgetClass mod_panel3 {
+     ignorepointer 1
+     position 0 0.3
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass compass_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text3 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Require Compass"
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass mod_panel4 {
+     ignorepointer 1
+     position 0 0.45
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass gps_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text4 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Require GPS"
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass mod_panel2 {
+     ignorepointer 1
+     position 0 0.6
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass showcarkills_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text2 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Show Car Kill Count"
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass mod_panel5 {
+     ignorepointer 1
+     position 0 0.75
+     size 1 0.15
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass showallkills_checkbox {
+       size 0.05 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      TextWidgetClass modname_text5 {
+       ignorepointer 1
+       position 0.08 0
+       size 0.7 0.5
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Show Count for All Player Kills"
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+ }
+}
