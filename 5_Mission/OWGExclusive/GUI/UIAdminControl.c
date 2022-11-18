@@ -58,6 +58,7 @@ class UIAdminControl extends UIScriptedMenu
     override void OnShow()
     {
         super.OnShow();
+		KPMenuUtils.LockControls();
         PPEffects.SetBlurMenu( 0.5 ); //Add blurr effect
 		m_CompassCheckBox.SetChecked(RC_GetKonfig().RequireCompass);
 		m_VehiclesCheckBox.SetChecked(RV_GetKonfig().RationalVehiclesActive);
@@ -188,6 +189,7 @@ class UIAdminControl extends UIScriptedMenu
 			case m_RationalBasesConfigButton:
 				Close();
 				KPRationalBasesConfigMenu = UIRationalBasesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RB_CONFIG, null));
+			    KPRationalBasesConfigMenu.m_Parent = this;
                 KPRationalBasesConfigMenu.SetMenuOpen(true);
 
 				

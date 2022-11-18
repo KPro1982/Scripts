@@ -1,5 +1,7 @@
 class UIRationalBasesConfig extends UIScriptedMenu
 {
+	
+	UIScriptedMenu m_Parent;
     private bool                 m_Initialized;
     private bool                 m_IsMenuOpen;
 
@@ -19,10 +21,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
 
     void UIRationalBasesConfig()
     {
-       /*Do something when this class is created. This is the constructor, it is the very firt thing called out of all other methods.
-    		More info on Enforce syntax and functionality here:  https://community.bistudio.com/wiki/DayZ:Enforce_Script_Syntax
-    	*/
-    	//m_CustomChildrenHighIQ = new array<ref Widget>;
+		
     }
 
     /*
@@ -47,6 +46,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
     override void OnShow()
     {
         super.OnShow();
+		KPMenuUtils.LockControls();
         PPEffects.SetBlurMenu( 0.5 ); //Add blurr effect
 
 		m_ContainerMaxEditBox.SetText(RB_GetKonfig().max_containers.ToString());
@@ -69,6 +69,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
         GetGame().GetInput().ResetGameFocus();
         GetGame().GetMission().PlayerControlEnable(false);
         GetGame().GetMission().GetHud().Show( true );
+
     }
 
     override Widget Init()
@@ -112,8 +113,11 @@ class UIRationalBasesConfig extends UIScriptedMenu
     	{
 
     		case m_OkButton:
-				RB_GetKonfig().max_containers = m_ContainerMaxEditBox.GetText().ToInt();
-				RB_GetKonfig().max_locks = m_CodeLockMaxEditBox.GetText().ToInt();
+				int rbmc = m_ContainerMaxEditBox.GetText().ToInt();
+				RB_GetKonfig().max_containers = rbmc;
+				string rbmlstr = m_CodeLockMaxEditBox.GetText();
+				int rbml = rbmlstr.ToInt();
+				RB_GetKonfig().max_locks = rbml;
 				RB_GetKonfig().search_radius = m_RadiusEditBox.GetText().ToInt();
 				RB_GetKonfig().Save();
 				Close();					

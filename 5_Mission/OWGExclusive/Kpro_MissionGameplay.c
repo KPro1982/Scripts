@@ -22,20 +22,7 @@ modded class MissionGameplay
 	}
 	
 		
-	private void LockControls()
-    {
-        GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
-        GetGame().GetUIManager().ShowUICursor( true );
-        GetGame().GetMission().GetHud().Show( false );
-    }
 
-    private void UnlockControls()
-    {
-        GetGame().GetMission().PlayerControlEnable(false);
-        GetGame().GetInput().ResetGameFocus();
-        GetGame().GetUIManager().ShowUICursor( false );
-        GetGame().GetMission().GetHud().Show( true );
-    }
 	
 	
 
@@ -54,16 +41,16 @@ modded class MissionGameplay
                     //Hide Menu
                     KPAdminControlMenu.SetMenuOpen(false);
                     GetGame().GetUIManager().HideScriptedMenu(KPAdminControlMenu);
-                    UnlockControls();
+                    KPMenuUtils.UnlockControls();
                 } else if (GetGame().GetUIManager().GetMenu() == NULL) {
                     //Show Menu
                     GetGame().GetUIManager().ShowScriptedMenu(KPAdminControlMenu, NULL);
                     KPAdminControlMenu.SetMenuOpen(true);
-                    LockControls();
+                    KPMenuUtils.LockControls();
                 }
             } else if (GetGame().GetUIManager().GetMenu() == NULL && KPAdminControlMenu == null) {
                 //Create Menu
-                LockControls();
+                KPMenuUtils.LockControls();
                 KPAdminControlMenu = UIAdminControl.Cast(GetUIManager().EnterScriptedMenu(UI_ADMIN_CONTROL, null));
 				KPAdminControlMenu.SetMenuOpen(true);
 

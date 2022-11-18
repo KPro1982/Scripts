@@ -134,6 +134,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style Editor
        "Use default text" 0
+       font "gui/fonts/Metron16"
       }
       TextWidgetClass configname_text0 {
        ignorepointer 1
@@ -170,6 +171,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style Editor
        "Use default text" 0
+       font "gui/fonts/MetronBlack16"
       }
       TextWidgetClass configname_text1 {
        ignorepointer 1
@@ -206,6 +208,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style Editor
        "Use default text" 0
+       font "gui/fonts/Metron16"
       }
       TextWidgetClass configname_text2 {
        ignorepointer 1

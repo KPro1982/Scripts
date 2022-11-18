@@ -46,6 +46,7 @@ class UIRationalVehiclesConfig extends UIScriptedMenu
     override void OnShow()
     {
         super.OnShow();
+		KPMenuUtils.LockControls();
         PPEffects.SetBlurMenu( 0.5 ); //Add blurr effect
 
 		m_DamageEditBox.SetText(RV_GetKonfig().DamageModifierPercentage.ToString());
