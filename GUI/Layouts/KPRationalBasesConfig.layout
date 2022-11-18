@@ -124,7 +124,7 @@ PanelWidgetClass rootFrame {
      vexactsize 0
      style blank
      {
-      EditBoxWidgetClass value_editbox {
+      EditBoxWidgetClass containermax_editbox {
        position 0 0
        size 0.25 0.5
        valign center_ref
@@ -160,7 +160,7 @@ PanelWidgetClass rootFrame {
      vexactsize 0
      style blank
      {
-      EditBoxWidgetClass value_editbox0 {
+      EditBoxWidgetClass codelockmax_editbox {
        position 0 0
        size 0.25 0.5
        valign center_ref
@@ -196,7 +196,7 @@ PanelWidgetClass rootFrame {
      vexactsize 0
      style blank
      {
-      EditBoxWidgetClass value_editbox1 {
+      EditBoxWidgetClass radius_editbox {
        position 0 0
        size 0.25 0.5
        valign center_ref

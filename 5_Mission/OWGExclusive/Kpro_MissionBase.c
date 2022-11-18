@@ -11,6 +11,11 @@ modded class MissionBase {
             case UI_RV_CONFIG:
                 menu = new UIRationalVehiclesConfig;
                 break;
+				
+			case UI_RB_CONFIG:
+                menu = new UIRationalBasesConfig;
+                break;	
+				
             }			
 			
 			

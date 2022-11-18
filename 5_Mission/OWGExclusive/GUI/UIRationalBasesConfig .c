@@ -1,9 +1,5 @@
-class UIAdminControl extends UIScriptedMenu
+class UIRationalBasesConfig extends UIScriptedMenu
 {
-	
-	ref UIRationalVehiclesConfig KPRationalVehiclesConfigMenu;  
-	ref UIRationalBasesConfig KPRationalBasesConfigMenu; 
-	
     private bool                 m_Initialized;
     private bool                 m_IsMenuOpen;
 
@@ -12,23 +8,16 @@ class UIAdminControl extends UIScriptedMenu
     private ButtonWidget         m_CloseButton;
 	private ButtonWidget         m_OkButton;
 	
-	private CheckBoxWidget		 m_RationalBasesCheckBox;
-    private ButtonWidget		 m_RationalBasesConfigButton;
-	
-	private CheckBoxWidget		 m_VehiclesCheckBox;
-    private ButtonWidget		 m_VehiclesConfigButton;
-	
-	private CheckBoxWidget		 m_CompassCheckBox;
-	private CheckBoxWidget		 m_GPSCheckBox;
-	private CheckBoxWidget		 m_ShowCarKillsCheckBox;
-	private CheckBoxWidget		 m_ShowAllKillsCheckBox;
+	private EditBoxWidget		 m_ContainerMaxEditBox;
+	private EditBoxWidget		 m_CodeLockMaxEditBox;
+	private EditBoxWidget		 m_RadiusEditBox;
 		
     //---
 
     //Array that stores child widgets we create during runtime
     //private ref array<ref Widget> m_CustomChildrenHighIQ;
 
-    void UIAdminControl()
+    void UIRationalBasesConfig()
     {
        /*Do something when this class is created. This is the constructor, it is the very firt thing called out of all other methods.
     		More info on Enforce syntax and functionality here:  https://community.bistudio.com/wiki/DayZ:Enforce_Script_Syntax
@@ -39,7 +28,7 @@ class UIAdminControl extends UIScriptedMenu
     /*
 		This is the destructor, called when this class is deleted / destroyed
     */
-    void ~UIAdminControl() 
+    void ~UIRationalBasesConfig() 
     {
         PPEffects.SetBlurMenu( 0 );
         GetGame().GetUIManager().Back();
@@ -59,12 +48,10 @@ class UIAdminControl extends UIScriptedMenu
     {
         super.OnShow();
         PPEffects.SetBlurMenu( 0.5 ); //Add blurr effect
-		m_CompassCheckBox.SetChecked(RC_GetKonfig().RequireCompass);
-		m_VehiclesCheckBox.SetChecked(RV_GetKonfig().RationalVehiclesActive);
-		m_GPSCheckBox.SetChecked(RG_GetKonfig().RequireGPS);
-		m_ShowAllKillsCheckBox.SetChecked(RV_GetKonfig().AllKillCount);
-		m_ShowCarKillsCheckBox.SetChecked(RV_GetKonfig().CarKillCountOnly);
-		m_RationalBasesCheckBox.SetChecked(RB_GetKonfig().RationalBasesActive);		
+
+		m_ContainerMaxEditBox.SetText(RB_GetKonfig().max_containers.ToString());
+		m_CodeLockMaxEditBox.SetText(RB_GetKonfig().max_locks.ToString());
+		m_RadiusEditBox.SetText(RB_GetKonfig().search_radius.ToString());
 		
 		
     }
@@ -88,28 +75,19 @@ class UIAdminControl extends UIScriptedMenu
     {
         if (!m_Initialized) //Only draw and init widgets if not already done that, since this function is called each time you do ( ShowScriptedMenu() )
         {
-            layoutRoot = GetGame().GetWorkspace().CreateWidgets( "OWGExclusive/scripts/GUI/Layouts/KPAdminControl.layout");
+            layoutRoot = GetGame().GetWorkspace().CreateWidgets( "OWGExclusive/scripts/GUI/Layouts/KPRationalBasesConfig.layout");
             
             //Define elements from .layout ( you must cast each element to its according script class if you wish to use its functions see scripts\1_Core\proto\EnWidgets.c )
 
 			m_CloseButton    = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "close_button" ) );
 			m_OkButton    = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "ok_button" ) );
 
-			m_RationalBasesCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "rationalbases_checkbox" ) );
-			m_RationalBasesConfigButton = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "rationalbasesconfig_button" ) );
-	
-			m_VehiclesCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "vehicles_checkbox" ) );
-    		m_VehiclesConfigButton = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "vehiclesconfig_button" ) );
-	
-		
-			m_CompassCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "compass_checkbox" ) );
-			m_GPSCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "gps_checkbox" ) );
-			m_ShowCarKillsCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "showcarkills_checkbox" ) );
-			m_ShowAllKillsCheckBox = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "showallkills_checkbox" ) );
+			m_ContainerMaxEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "containermax_editbox" ) );
+			m_CodeLockMaxEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "codelockmax_editbox" ) );
+			m_RadiusEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "radius_editbox" ) );
 			
-			
-			
-						
+
+									
           //  WidgetEventHandler.GetInstance().RegisterOnDoubleClick( m_Grid, this, "OnDoubleClicked" ); //Attach a double-click event on a specifc widget
           //  WidgetEventHandler.GetInstance().RegisterOnDoubleClick( m_Scroller, this, "OnDoubleClicked" );
 
@@ -134,66 +112,17 @@ class UIAdminControl extends UIScriptedMenu
     	{
 
     		case m_OkButton:
+				RB_GetKonfig().max_containers = m_ContainerMaxEditBox.GetText().ToInt();
+				RB_GetKonfig().max_locks = m_CodeLockMaxEditBox.GetText().ToInt();
+				RB_GetKonfig().search_radius = m_RadiusEditBox.GetText().ToInt();
+				RB_GetKonfig().Save();
 				Close();					
     		break;
 			
 			case m_CloseButton:
 				Close();
 			break;
-			
-			case m_CompassCheckBox:
-					RC_GetKonfig().RequireCompass = m_CompassCheckBox.IsChecked();
-					RC_GetKonfig().Save();
-				
-			break;
-		
-			case m_GPSCheckBox:
-					RG_GetKonfig().RequireGPS = m_GPSCheckBox.IsChecked();
-					RG_GetKonfig().Save();
-				
-			break;
-			
-			case m_ShowCarKillsCheckBox:
-					RV_GetKonfig().CarKillCountOnly = m_ShowCarKillsCheckBox.IsChecked();
-					RV_GetKonfig().Save();
-				
-			break;
-			
-			case m_ShowAllKillsCheckBox:
-					RV_GetKonfig().AllKillCount = m_ShowAllKillsCheckBox.IsChecked();
-					RV_GetKonfig().Save();
-				
-			break;
-			
-			case m_VehiclesCheckBox:
-					RV_GetKonfig().RationalVehiclesActive = m_VehiclesCheckBox.IsChecked();
-					RV_GetKonfig().Save();
-				
-			break;
-			
-			case m_RationalBasesCheckBox:
-					RB_GetKonfig().RationalBasesActive = m_RationalBasesCheckBox.IsChecked();
-					RB_GetKonfig().Save();
-				
-			break;
-			
-			case m_VehiclesConfigButton:
-				Close();
-				KPRationalVehiclesConfigMenu = UIRationalVehiclesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RV_CONFIG, null));
-                KPRationalVehiclesConfigMenu.SetMenuOpen(true);
-
-				
-			break;
-			
-			case m_RationalBasesConfigButton:
-				Close();
-				KPRationalBasesConfigMenu = UIRationalBasesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RB_CONFIG, null));
-                KPRationalBasesConfigMenu.SetMenuOpen(true);
-
-				
-			break;
-				
-			
+						
     	}
         return super.OnClick(w, x, y, button);
     }

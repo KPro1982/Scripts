@@ -1,9 +1,7 @@
-ref UIRationalVehiclesConfig KPRationalVehiclesConfigMenu;  // this feels like a terrible idea
-
 modded class MissionGameplay
 {   
 		 ref UIAdminControl KPAdminControlMenu;
-		ref UIRationalVehiclesConfig KPRationalVehiclesConfigMenu;  // this feels like a terrible idea
+
 	
 
 		override void OnMissionStart()
@@ -66,10 +64,9 @@ modded class MissionGameplay
             } else if (GetGame().GetUIManager().GetMenu() == NULL && KPAdminControlMenu == null) {
                 //Create Menu
                 LockControls();
-               // KPAdminControlMenu = UIAdminControl.Cast(GetUIManager().EnterScriptedMenu(UI_ADMIN_CONTROL, null));
-				//KPAdminControlMenu.SetMenuOpen(true);
-	  KPRationalVehiclesConfigMenu = UIRationalVehiclesConfig.Cast(GetUIManager().EnterScriptedMenu(UI_RV_CONFIG, null));
-               KPRationalVehiclesConfigMenu.SetMenuOpen(true);
+                KPAdminControlMenu = UIAdminControl.Cast(GetUIManager().EnterScriptedMenu(UI_ADMIN_CONTROL, null));
+				KPAdminControlMenu.SetMenuOpen(true);
+
             }
 							
 								
