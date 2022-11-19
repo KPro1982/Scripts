@@ -37,6 +37,7 @@ class UIRationalVehiclesConfig extends UIScriptedMenu
         GetGame().GetMission().PlayerControlEnable(false);
         GetGame().GetMission().GetHud().Show( true );
 
+
         //Destroy root widget and all its children
         if ( layoutRoot )
         	layoutRoot.Unlink();
@@ -61,14 +62,13 @@ class UIRationalVehiclesConfig extends UIScriptedMenu
     {
         super.OnHide();
         PPEffects.SetBlurMenu( 0 ); //Remove blurr effect
+		KPMenuUtils.UnlockControls();
+
 
         //Unlock controls, this also happens in missionGameplay.c however including it here will assure control is gained back incase that method is not invoked. 
         //That can occur when other mods / scripts force a menu on screen illegally 
-        g_Game.GetUIManager().ShowCursor(true);
-        g_Game.GetUIManager().ShowUICursor(false);
-        GetGame().GetInput().ResetGameFocus();
-        GetGame().GetMission().PlayerControlEnable(false);
-        GetGame().GetMission().GetHud().Show( true );
+
+		// GetParentMenu().EnterScriptedMenu(UI_ADMIN_CONTROL);
     }
 
     override Widget Init()
@@ -109,13 +109,16 @@ class UIRationalVehiclesConfig extends UIScriptedMenu
     	{
 
     		case m_OkButton:
-				RV_GetKonfig().DamageModifierPercentage = m_DamageEditBox.GetText().ToInt();
-				RV_GetKonfig().MinimumDamagePercentage = m_MinimumDamageEditBox.GetText().ToInt();
-				RV_GetKonfig().Save();
-				Close();					
+				RV_GetKonfig().SetDamageModifierPercentage(m_DamageEditBox.GetText().ToInt());
+				RV_GetKonfig().SetMinimumDamagePercentage(m_MinimumDamageEditBox.GetText().ToInt());
+				KPMenuUtils.UnlockControls();
+				Close();			
     		break;
 			
 			case m_CloseButton:
+        //		GetGame().GetUIManager().HideScriptedMenu(this);
+		//		GetGame().GetUIManager().EnterScriptedMenu(UI_ADMIN_CONTROL, null);
+				KPMenuUtils.UnlockControls();
 				Close();
 			break;
 						

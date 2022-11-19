@@ -83,6 +83,7 @@ class UIAdminControl extends UIScriptedMenu
         GetGame().GetInput().ResetGameFocus();
         GetGame().GetMission().PlayerControlEnable(false);
         GetGame().GetMission().GetHud().Show( true );
+		KPMenuUtils.UnlockControls();
     }
 
     override Widget Init()
@@ -135,61 +136,52 @@ class UIAdminControl extends UIScriptedMenu
     	{
 
     		case m_OkButton:
-				Close();					
+				GetGame().GetUIManager().HideScriptedMenu(this);					
     		break;
 			
 			case m_CloseButton:
-				Close();
+				GetGame().GetUIManager().HideScriptedMenu(this);
 			break;
 			
 			case m_CompassCheckBox:
-					RC_GetKonfig().RequireCompass = m_CompassCheckBox.IsChecked();
-					RC_GetKonfig().Save();
-				
+					RC_GetKonfig().SetRequireCompass(m_CompassCheckBox.IsChecked());				
 			break;
 		
 			case m_GPSCheckBox:
-					RG_GetKonfig().RequireGPS = m_GPSCheckBox.IsChecked();
-					RG_GetKonfig().Save();
-				
+				RG_GetKonfig().SetRequireGPS(m_GPSCheckBox.IsChecked());
 			break;
 			
 			case m_ShowCarKillsCheckBox:
-					RV_GetKonfig().CarKillCountOnly = m_ShowCarKillsCheckBox.IsChecked();
-					RV_GetKonfig().Save();
+					RV_GetKonfig().SetCarKillCountOnly(m_ShowCarKillsCheckBox.IsChecked());
+			
 				
 			break;
 			
 			case m_ShowAllKillsCheckBox:
-					RV_GetKonfig().AllKillCount = m_ShowAllKillsCheckBox.IsChecked();
-					RV_GetKonfig().Save();
+					RV_GetKonfig().SetAllKillCount(m_ShowAllKillsCheckBox.IsChecked());
+
 				
 			break;
 			
 			case m_VehiclesCheckBox:
-					RV_GetKonfig().RationalVehiclesActive = m_VehiclesCheckBox.IsChecked();
-					RV_GetKonfig().Save();
+					RV_GetKonfig().SetRationalVehiclesActive(m_VehiclesCheckBox.IsChecked());
 				
 			break;
 			
 			case m_RationalBasesCheckBox:
-					RB_GetKonfig().RationalBasesActive = m_RationalBasesCheckBox.IsChecked();
-					RB_GetKonfig().Save();
+					RB_GetKonfig().SetRationalBasesActive(m_RationalBasesCheckBox.IsChecked());
 				
 			break;
 			
 			case m_VehiclesConfigButton:
-				Close();
-				KPRationalVehiclesConfigMenu = UIRationalVehiclesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RV_CONFIG, null));
+				KPRationalVehiclesConfigMenu = UIRationalVehiclesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RV_CONFIG, this));
                 KPRationalVehiclesConfigMenu.SetMenuOpen(true);
 
 				
 			break;
 			
 			case m_RationalBasesConfigButton:
-				Close();
-				KPRationalBasesConfigMenu = UIRationalBasesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RB_CONFIG, null));
-			    KPRationalBasesConfigMenu.m_Parent = this;
+				KPRationalBasesConfigMenu = UIRationalBasesConfig.Cast(GetGame().GetUIManager().EnterScriptedMenu(UI_RB_CONFIG, this));
                 KPRationalBasesConfigMenu.SetMenuOpen(true);
 
 				

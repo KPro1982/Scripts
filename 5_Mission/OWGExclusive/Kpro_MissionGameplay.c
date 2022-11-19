@@ -28,8 +28,17 @@ modded class MissionGameplay
 
 	override void OnUpdate(float timeslice)
 	{        		
-		super.OnUpdate(timeslice); 		
-		if ( GetGame().GetInput().LocalPress("OWGAdmin") && GetGame().GetUIManager().GetMenu() == NULL ) 
+		super.OnUpdate(timeslice); 	
+		
+		bool kpress = GetGame().GetInput().LocalPress("OWGAdmin");
+		if(GetGame().GetUIManager().GetMenu() == NULL)
+		{
+			bool gmenu = true;
+			KPMenuUtils.UnlockControls();
+			
+		}
+		
+		if ( kpress && gmenu) 
 		{				
 			string curSteamId = GetGame().GetUserManager().GetTitleInitiator().GetUid();
 			if(!OWG_GetKonfig().ValidatePermissions(curSteamId))

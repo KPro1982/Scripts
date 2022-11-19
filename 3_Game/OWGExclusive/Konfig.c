@@ -1,19 +1,19 @@
 class OWG_Konfig
 {
 
-	protected static string ConfigPATH = "$profile:\\OWGExclusive\\Config_settings.json";
+	protected static string ConfigPATH = "$profile:\\OWGExclusive\\OWGExclusive.json";
 	private static const string configRoot = "$profile:\\OWGExclusive\\";	
+	bool m_isdirty;
 /////////////////////////////////////////////////////////////////////////////////////////////////////	
 // Variables to save go here
 //
 	string ConfigVersion = "1";
 	ref array<ref string> AdminSteamIDs = {};
-	
+	bool RG_Bool;
 	
 // NonSerialed Variables that should not be saved go here
 	[NonSerialized()]
 	int ConfigInt = 1;
-
 	
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,9 +30,12 @@ class OWG_Konfig
 	
 	}
 	
+
+	
 	void Load(){
 		Print("[OWGExclusive] Loading Config");
 		if (GetGame().IsServer()){
+			
 			
 			if (FileExist(configRoot)==0) // Save Directory Does not Exist
 	        {
@@ -53,7 +56,16 @@ class OWG_Konfig
 	}
 	
 	void Save(){
-		JsonFileLoader<OWG_Konfig>.JsonSaveFile(ConfigPATH, this);
+		if ( GetGame().IsServer() ){
+			JsonFileLoader<OWG_Konfig>.JsonSaveFile(ConfigPATH, this);
+			Print("!!!Konfig running on server!!!");
+		} else {
+		
+			Print("!!!Konfig running on client so request update!!!");
+			GetRPCManager().SendRPC("OWG_OWGExclusive", "RPCOWG_Update", new Param1< OWG_Konfig >( this ), true, NULL);
+		}
+
+		
 	}
 	
 	bool ValidatePermissions(string steamId)
@@ -87,5 +99,6 @@ static ref OWG_Konfig OWG_GetKonfig()
 			m_OWG_Konfig.Load();
 		}
 	}
+
 	return m_OWG_Konfig;
 };

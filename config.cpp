@@ -5,7 +5,7 @@ class CfgPatches
         units[] = {};
         weapons[] = {};
         requiredVersion = 0.1;
-		requiredAddons[] = {"VanillaPPMap", "SchanaModCompass",  "Kpro_RationalCompass", "Kpro_RationalGPS", "Kpro_RationalVehicles", "RB5" }; 
+		requiredAddons[] = {"JM_CF_Scripts","VanillaPPMap", "SchanaModCompass",  "Kpro_RationalCompass", "Kpro_RationalGPS", "Kpro_RationalVehicles", "RB5" }; 
 	};
 };
 

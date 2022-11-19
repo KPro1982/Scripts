@@ -1,7 +1,6 @@
 class UIRationalBasesConfig extends UIScriptedMenu
 {
 	
-	UIScriptedMenu m_Parent;
     private bool                 m_Initialized;
     private bool                 m_IsMenuOpen;
 
@@ -13,6 +12,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
 	private EditBoxWidget		 m_ContainerMaxEditBox;
 	private EditBoxWidget		 m_CodeLockMaxEditBox;
 	private EditBoxWidget		 m_RadiusEditBox;
+	private CheckBoxWidget		 m_AllowPlayerReport;
 		
     //---
 
@@ -52,6 +52,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
 		m_ContainerMaxEditBox.SetText(RB_GetKonfig().max_containers.ToString());
 		m_CodeLockMaxEditBox.SetText(RB_GetKonfig().max_locks.ToString());
 		m_RadiusEditBox.SetText(RB_GetKonfig().search_radius.ToString());
+		m_AllowPlayerReport.SetChecked(RB_GetKonfig().allowReport);
 		
 		
     }
@@ -61,14 +62,15 @@ class UIRationalBasesConfig extends UIScriptedMenu
     {
         super.OnHide();
         PPEffects.SetBlurMenu( 0 ); //Remove blurr effect
+		KPMenuUtils.UnlockControls();
+
 
         //Unlock controls, this also happens in missionGameplay.c however including it here will assure control is gained back incase that method is not invoked. 
         //That can occur when other mods / scripts force a menu on screen illegally 
-        g_Game.GetUIManager().ShowCursor(true);
-        g_Game.GetUIManager().ShowUICursor(false);
-        GetGame().GetInput().ResetGameFocus();
-        GetGame().GetMission().PlayerControlEnable(false);
-        GetGame().GetMission().GetHud().Show( true );
+
+
+		
+		// GetParentMenu().EnterScriptedMenu(UI_ADMIN_CONTROL);
 
     }
 
@@ -86,6 +88,7 @@ class UIRationalBasesConfig extends UIScriptedMenu
 			m_ContainerMaxEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "containermax_editbox" ) );
 			m_CodeLockMaxEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "codelockmax_editbox" ) );
 			m_RadiusEditBox = EditBoxWidget.Cast( layoutRoot.FindAnyWidget( "radius_editbox" ) );
+			m_AllowPlayerReport = CheckBoxWidget.Cast( layoutRoot.FindAnyWidget( "allowplayerreport_checkbox" ) );
 			
 
 									
@@ -113,18 +116,19 @@ class UIRationalBasesConfig extends UIScriptedMenu
     	{
 
     		case m_OkButton:
-				int rbmc = m_ContainerMaxEditBox.GetText().ToInt();
-				RB_GetKonfig().max_containers = rbmc;
-				string rbmlstr = m_CodeLockMaxEditBox.GetText();
-				int rbml = rbmlstr.ToInt();
-				RB_GetKonfig().max_locks = rbml;
-				RB_GetKonfig().search_radius = m_RadiusEditBox.GetText().ToInt();
-				RB_GetKonfig().Save();
-				Close();					
+				RB_GetKonfig().Setmax_containers(m_ContainerMaxEditBox.GetText().ToInt());
+				RB_GetKonfig().Setmax_locks(m_CodeLockMaxEditBox.GetText().ToInt());
+				RB_GetKonfig().Setsearch_radius(m_RadiusEditBox.GetText().ToInt());
+				RB_GetKonfig().SetallowReport(m_AllowPlayerReport.IsChecked());
+				KPMenuUtils.UnlockControls();
+				Close();
+				
     		break;
 			
 			case m_CloseButton:
+				KPMenuUtils.UnlockControls();
 				Close();
+
 			break;
 						
     	}
